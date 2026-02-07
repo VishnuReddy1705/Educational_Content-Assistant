@@ -4,25 +4,42 @@ import './App.css';
 
 function App() {
   const [topic, setTopic] = useState("Physics 101");
-  const [data, setData] = useState(offlineLibrary["physics"] || null);
+  const [activeHover, setActiveHover] = useState(null); // Track which bar is hovered
+
+  // Sample data for the chart
+  const weeklyData = [
+    { day: "Mon", hours: 2 },
+    { day: "Tue", hours: 3.5 },
+    { day: "Wed", hours: 1 },
+    { day: "Thu", hours: 4 },
+    { day: "Fri", hours: 3 },
+  ];
 
   return (
     <div className="dashboard-app">
-      {/* Sidebar from your image */}
+      {/* Sidebar Section */}
       <aside className="sidebar">
-        <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" className="bot-logo" alt="bot" />
+        <div className="bot-container">
+          <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" className="bot-logo" alt="bot" />
+        </div>
         <h2>EduAI Assistant</h2>
-        <ul className="nav-menu">
-          <li className="active">🔴 Dashboard</li>
-          <li>⚪ Deep Dive (RAG)</li>
-          <li>⚪ ScaleDown Summarizer</li>
-          <li>⚪ Quiz Arena</li>
-        </ul>
+        <nav>
+          <ul className="nav-menu">
+            <li className="active"><span className="dot"></span> Dashboard</li>
+            <li>⚪ Deep Dive (RAG)</li>
+            <li>⚪ ScaleDown Summarizer</li>
+            <li>⚪ Quiz Arena</li>
+          </ul>
+        </nav>
       </aside>
 
+      {/* Main Dashboard Section */}
       <main className="main-content">
-        <h1>📊 Student Progress Dashboard</h1>
+        <header>
+          <h1>📊 Student Progress Dashboard</h1>
+        </header>
 
+        {/* Top Metric Cards */}
         <div className="top-stats">
           <div className="stat-box">
             <h4>Current Course</h4>
@@ -41,25 +58,31 @@ function App() {
           </div>
         </div>
 
-        <h2>Weekly Activity</h2>
-        <div className="chart-container">
-          <div className="bar-chart">
-            <div className="bar" style={{height: '50%'}} data-label="Mon"></div>
-            <div className="bar" style={{height: '85%'}} data-label="Tue"></div>
-            <div className="bar" style={{height: '30%'}} data-label="Wed"></div>
-            <div className="bar" style={{height: '100%'}} data-label="Thu"></div>
-            <div className="bar" style={{height: '75%'}} data-label="Fri"></div>
+        {/* Interactive Chart Section */}
+        <section className="activity-section">
+          <h2>Weekly Activity</h2>
+          <div className="chart-container">
+            <div className="bar-chart">
+              {weeklyData.map((data, index) => (
+                <div 
+                  key={index} 
+                  className="bar-wrapper"
+                  onMouseEnter={() => setActiveHover(index)}
+                  onMouseLeave={() => setActiveHover(null)}
+                >
+                  {activeHover === index && (
+                    <div className="tooltip">{data.hours} hrs</div>
+                  )}
+                  <div 
+                    className="bar" 
+                    style={{ height: `${(data.hours / 4) * 100}%` }}
+                    data-label={data.day}
+                  ></div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-
-        {/* Search part for the AI/Library */}
-        <div style={{marginTop: '40px', background: '#161b22', padding: '20px', borderRadius: '10px'}}>
-            <input 
-              style={{background: '#0d1117', color: 'white', border: '1px solid #30363d', padding: '10px', borderRadius: '5px', width: '250px'}}
-              placeholder="Search other topics..." 
-              onChange={(e) => setTopic(e.target.value)}
-            />
-        </div>
+        </section>
       </main>
     </div>
   );
