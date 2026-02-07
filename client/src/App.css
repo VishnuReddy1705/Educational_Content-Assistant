@@ -1,60 +1,47 @@
-/* Graph Zoom Styling */
-.fullscreen-graph {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: var(--main-bg);
-  z-index: 999;
-  padding: 50px;
-  display: flex;
-  flex-direction: column;
+:root {
+  --sidebar-bg: #1e2130;
+  --main-bg: #0e1117;
+  --text-white: #fafafa;
+  --accent-red: #ff4b4b;
+  --card-bg: #161b22;
+  --bar-grad: linear-gradient(180deg, #58a6ff 0%, #1f6feb 100%);
 }
 
-.fullscreen-graph .chart-container { height: 70%; }
+body { margin: 0; background: var(--main-bg); color: var(--text-white); font-family: 'Segoe UI', sans-serif; }
 
-.zoom-btn {
-  background: #30363d;
-  color: white;
-  border: 1px solid #58a6ff;
-  padding: 8px 15px;
-  border-radius: 6px;
-  cursor: pointer;
-  float: right;
+.dashboard-app { display: flex; height: 100vh; overflow: hidden; }
+
+/* Sidebar Layout */
+.sidebar { width: 280px; background: var(--sidebar-bg); padding: 40px 20px; border-right: 1px solid #30363d; }
+.bot-logo { width: 70px; margin-bottom: 10px; filter: drop-shadow(0 0 10px rgba(88, 166, 255, 0.3)); }
+.nav-menu { list-style: none; padding: 0; margin-top: 30px; }
+.nav-menu li { 
+  padding: 14px; color: #8b949e; cursor: pointer; transition: 0.2s; border-radius: 8px;
+  display: flex; align-items: center; gap: 12px; font-weight: 500;
+}
+.nav-menu li.active { background: #21262d; color: white; }
+.dot { width: 8px; height: 8px; background: var(--accent-red); border-radius: 50%; display: inline-block; }
+
+/* Main Section */
+.main-content { flex: 1; padding: 50px; overflow-y: auto; }
+.top-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 60px; }
+.stat-box h1 { font-size: 36px; margin: 10px 0; letter-spacing: -1px; }
+.badge { color: #2ecc71; font-weight: bold; font-size: 13px; }
+
+/* Interactive Chart Styling */
+.chart-container { background: var(--card-bg); padding: 40px; border-radius: 12px; border: 1px solid #30363d; }
+.bar-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 250px; border-bottom: 2px solid #30363d; }
+
+.bar-wrapper { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; height: 100%; justify-content: flex-end; }
+.bar { width: 60%; background: var(--bar-grad); border-radius: 6px 6px 0 0; cursor: pointer; transition: 0.3s; }
+.bar:hover { filter: brightness(1.3); }
+.bar::after { content: attr(data-label); position: absolute; bottom: -30px; color: #8b949e; font-size: 14px; }
+
+/* Tooltip Styling */
+.tooltip {
+  position: absolute; top: -40px; background: white; color: black;
+  padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3); animation: fadeIn 0.2s ease-in;
 }
 
-/* Flowchart Styling (Pure CSS) */
-.flow-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 50px;
-}
-
-.flow-node {
-  background: #1f6feb;
-  padding: 15px 30px;
-  border-radius: 10px;
-  font-weight: bold;
-  box-shadow: 0 0 15px rgba(88, 166, 255, 0.4);
-}
-
-.flow-node.root { background: #ff4b4b; }
-.flow-node.final { background: #2ecc71; }
-
-.flow-line {
-  width: 2px;
-  height: 40px;
-  background: #30363d;
-}
-
-.flow-row {
-  display: flex;
-  gap: 40px;
-}
-
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
