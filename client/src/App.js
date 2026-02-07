@@ -10,7 +10,7 @@ function App() {
     setLoading(true);
     try {
       // REPLACE with your live Render URL after Step 4
-      const API_URL = "http://localhost:5000/ask"; 
+      const API_URL = "https://educational-content-assistant-ldux.onrender.com"; 
       
       const res = await fetch(API_URL, {
         method: "POST",
