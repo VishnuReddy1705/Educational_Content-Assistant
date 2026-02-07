@@ -1,36 +1,47 @@
 :root {
   --sidebar-bg: #1e2130;
   --main-bg: #0e1117;
-  --text-white: #ffffff;
-  --accent-green: #2ecc71;
+  --text-white: #fafafa;
+  --accent-red: #ff4b4b;
   --card-bg: #161b22;
+  --bar-grad: linear-gradient(180deg, #58a6ff 0%, #1f6feb 100%);
 }
 
-body { margin: 0; background: var(--main-bg); color: var(--text-white); font-family: 'Inter', sans-serif; }
+body { margin: 0; background: var(--main-bg); color: var(--text-white); font-family: 'Segoe UI', sans-serif; }
 
-.dashboard-app { display: flex; height: 100vh; }
+.dashboard-app { display: flex; height: 100vh; overflow: hidden; }
 
-/* Sidebar Navigation */
-.sidebar { width: 280px; background: var(--sidebar-bg); padding: 40px 25px; border-right: 1px solid #30363d; }
-.bot-logo { width: 80px; margin-bottom: 20px; }
-.sidebar h2 { font-size: 22px; margin-bottom: 30px; }
-.nav-menu { list-style: none; padding: 0; }
+/* Sidebar Layout */
+.sidebar { width: 280px; background: var(--sidebar-bg); padding: 40px 20px; border-right: 1px solid #30363d; }
+.bot-logo { width: 70px; margin-bottom: 10px; filter: drop-shadow(0 0 10px rgba(88, 166, 255, 0.3)); }
+.nav-menu { list-style: none; padding: 0; margin-top: 30px; }
 .nav-menu li { 
-  padding: 12px 15px; border-radius: 8px; cursor: pointer; color: #8b949e; 
-  display: flex; align-items: center; gap: 10px; margin-bottom: 5px;
+  padding: 14px; color: #8b949e; cursor: pointer; transition: 0.2s; border-radius: 8px;
+  display: flex; align-items: center; gap: 12px; font-weight: 500;
 }
-.nav-menu li.active { background: #30363d; color: white; border-left: 4px solid #ff4b4b; }
-.nav-menu li:hover { background: #21262d; }
+.nav-menu li.active { background: #21262d; color: white; }
+.dot { width: 8px; height: 8px; background: var(--accent-red); border-radius: 50%; display: inline-block; }
 
-/* Main Content */
-.main-content { flex: 1; padding: 40px; overflow-y: auto; }
-.top-stats { display: flex; gap: 40px; margin-bottom: 50px; }
-.stat-box h4 { color: #8b949e; margin: 0 0 10px 0; font-size: 14px; }
-.stat-box h1 { margin: 0; font-size: 32px; }
-.badge { font-size: 12px; color: var(--accent-green); background: rgba(46, 204, 113, 0.1); padding: 4px 8px; border-radius: 5px; }
+/* Main Section */
+.main-content { flex: 1; padding: 50px; overflow-y: auto; }
+.top-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 60px; }
+.stat-box h1 { font-size: 36px; margin: 10px 0; letter-spacing: -1px; }
+.badge { color: #2ecc71; font-weight: bold; font-size: 13px; }
 
-/* Weekly Activity Chart (CSS Version) */
-.chart-container { background: var(--card-bg); padding: 30px; border-radius: 15px; margin-top: 30px; }
-.bar-chart { display: flex; align-items: flex-end; gap: 20px; height: 200px; padding-top: 20px; border-bottom: 1px solid #30363d; }
-.bar { flex: 1; background: linear-gradient(to top, #1f6feb, #58a6ff); border-radius: 4px 4px 0 0; position: relative; min-width: 40px;}
-.bar::after { content: attr(data-label); position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); font-size: 12px; color: #8b949e; }
+/* Interactive Chart Styling */
+.chart-container { background: var(--card-bg); padding: 40px; border-radius: 12px; border: 1px solid #30363d; }
+.bar-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 250px; border-bottom: 2px solid #30363d; }
+
+.bar-wrapper { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; height: 100%; justify-content: flex-end; }
+.bar { width: 60%; background: var(--bar-grad); border-radius: 6px 6px 0 0; cursor: pointer; transition: 0.3s; }
+.bar:hover { filter: brightness(1.3); }
+.bar::after { content: attr(data-label); position: absolute; bottom: -30px; color: #8b949e; font-size: 14px; }
+
+/* Tooltip Styling */
+.tooltip {
+  position: absolute; top: -40px; background: white; color: black;
+  padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3); animation: fadeIn 0.2s ease-in;
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
