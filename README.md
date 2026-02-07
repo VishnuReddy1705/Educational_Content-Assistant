@@ -26,6 +26,7 @@ This application serves as an active study partner, offering:
 
 ---
 🛠️ Tech Stack
+
 Core Logic: Python 3.9
 
 LLM Orchestration: LangChain
@@ -37,13 +38,6 @@ Vector Database: ChromaDB
 Frontend: Modern Web Interface (HTML/CSS/JS)
 
 Deployment: Vercel / Cloud Hosting
-
-🔮 Future Enhancements
-Voice Interaction: Bidirectional voice chat for studying on the go.
-
-OCR Support: Ability to scan and index handwritten lecture notes.
-
-Collaborative Mode: Allowing study groups to share generated flashcard decks.
 
 ## 🏗️ System Architecture
 
