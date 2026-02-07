@@ -1,60 +1,62 @@
-/* Graph Zoom Styling */
-.fullscreen-graph {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: var(--main-bg);
-  z-index: 999;
-  padding: 50px;
+/* Top Header */
+.top-header {
   display: flex;
-  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 20px;
+  position: relative;
 }
 
-.fullscreen-graph .chart-container { height: 70%; }
-
-.zoom-btn {
-  background: #30363d;
-  color: white;
-  border: 1px solid #58a6ff;
-  padding: 8px 15px;
+.fork-btn {
+  background: transparent;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  padding: 8px 16px;
   border-radius: 6px;
-  cursor: pointer;
-  float: right;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
 }
 
-/* Flowchart Styling (Pure CSS) */
-.flow-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 50px;
+.fork-btn:hover { background: #21262d; border-color: #8b949e; }
+
+/* Profile Dropdown */
+.profile-section { cursor: pointer; position: relative; }
+
+.profile-dropdown {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  background: #161b22;
+  border: 1px solid #30363d;
+  width: 150px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  z-index: 100;
+  padding: 10px 0;
 }
 
-.flow-node {
-  background: #1f6feb;
-  padding: 15px 30px;
-  border-radius: 10px;
-  font-weight: bold;
-  box-shadow: 0 0 15px rgba(88, 166, 255, 0.4);
+.profile-dropdown p {
+  padding: 10px 20px;
+  margin: 0;
+  font-size: 14px;
+  color: #c9d1d9;
 }
 
-.flow-node.root { background: #ff4b4b; }
-.flow-node.final { background: #2ecc71; }
+.profile-dropdown p:hover { background: #1f6feb; color: white; }
 
-.flow-line {
-  width: 2px;
-  height: 40px;
-  background: #30363d;
+/* Tool Views */
+.tool-view {
+  background: #161b22;
+  padding: 40px;
+  border-radius: 15px;
+  border: 1px solid #30363d;
+  min-height: 400px;
 }
 
-.flow-row {
-  display: flex;
-  gap: 40px;
+.fade-in {
+  animation: fadeIn 0.4s ease-in-out;
 }
 
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
