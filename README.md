@@ -1,32 +1,45 @@
-# Educational_Content-Assistant
-# 🎓 EduAI: Intelligent Educational Content Assistant
+# 🎓 Educational Content Assistant
 
-EduAI is a full-stack MERN application that transforms simple topics into structured, interactive educational dashboards. Using the Google Gemini AI, it generates learning stats, difficulty levels, and summaries which can be exported as a PDF.
+![Python](https://img.shields.io/badge/Python-3.9-blue?logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)
+![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4-412991?logo=openai&logoColor=white)
+![LangChain](https://img.shields.io/badge/LangChain-RAG-1C3C3C?logo=langchain&logoColor=white)
 
-## 🚀 Features
-- **AI-Powered Analysis:** Generates difficulty, time to learn, and relevance scores.
-- **Interactive Dashboard:** Clean, SaaS-style UI for a premium user experience.
-- **Study History:** Remembers your last 5 searches using LocalStorage.
-- **Export to PDF:** Download your study dashboard as a clean PDF sheet.
+> **A personalized AI Tutor that doesn't just "read" textbooks—it understands, compresses, and maps them.**
 
-## 🛠️ Tech Stack
-- **Frontend:** React.js, CSS3, html2pdf.js
-- **Backend:** Node.js, Express.js
-- **AI:** Google Generative AI (Gemini 1.5 Flash)
-- **Deployment:** Netlify (Frontend) & Render (Backend)
+🔗 **[Live Demo App](https://share.streamlit.io/YOUR_USERNAME/Educational-Content-Assistant/main/app.py)**
 
-## 📂 Installation & Setup
+---
 
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/VishnuReddy1705/Educational_Content-Assistant.git](https://github.com/VishnuReddy1705/Educational_Content-Assistant.git)
-2.  Backend Setup:
- Go to server/ folder.
- Create a .env file and add: GEMINI_API_KEY=your_key_here
- Run npm install then node index.js.
-3.Frontend Setup:
- Go to client/ folder.
- Run npm install then npm start.
+## 🧠 The Problem vs. The Solution
 
-🌍 Live Demo
-Check out the live version here: [(https://vishnureddy-ai.vercel.app/)]
+**The Problem:** Textbooks are dense. Students drown in 500+ pages of information and struggle to connect concepts.
+
+**The Solution:** An AI-powered platform featuring **ScaleDown™ Technology**—a custom engine that compresses academic text by 70% while retaining pedagogical value, coupled with a visual knowledge graph.
+
+---
+
+## ✨ Key Features
+
+| Feature | Description |
+| :--- | :--- |
+| **⚡ ScaleDown Engine** | Compresses complex topics into bulleted "cheat sheets" without losing nuance. |
+| **🕸️ Knowledge Graph** | Auto-generates visual maps showing how concepts (e.g., *Force*) link to others (e.g., *Acceleration*). |
+| **📚 Deep Dive RAG** | Chat directly with your PDF. Citations are pulled instantly from the source text. |
+| **📝 Adaptive Quiz** | Generates dynamic multiple-choice questions based on the difficulty of the topic. |
+| **📊 Analytics Dashboard** | Tracks study streaks and knowledge retention metrics. |
+
+---
+
+## 🏗️ Architecture
+
+All processing happens in the cloud using a **Retrieval-Augmented Generation (RAG)** pipeline.
+
+```mermaid
+graph LR
+    A[📂 PDF Textbook] -->|Ingest| B(📄 Chunking Strategy)
+    B -->|Embed| C{📦 ChromaDB Vector Store}
+    D[👤 Student] -->|Query| E[🤖 Streamlit UI]
+    E -->|Search| C
+    C -->|Context| F[🧠 OpenAI GPT-4]
+    F -->|ScaleDown/Quiz| E
