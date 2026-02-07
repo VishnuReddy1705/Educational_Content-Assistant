@@ -7,7 +7,7 @@
 
 > **A personalized AI Tutor that doesn't just "read" textbooks—it understands, compresses, and maps them.**
 
-🔗 **[Live Demo App](https://share.streamlit.io/YOUR_USERNAME/Educational-Content-Assistant/main/app.py)**
+🔗 **[Live Demo App](https://vishnureddy-ai.vercel.app/)**
 
 ---
 
