@@ -29,4 +29,4 @@ EduAI is a full-stack MERN application that transforms simple topics into struct
  Run npm install then npm start.
 
 🌍 Live Demo
-Check out the live version here: [Your Netlify Link Here]
+Check out the live version here: [(https://vishnureddy-ai.vercel.app/)]
