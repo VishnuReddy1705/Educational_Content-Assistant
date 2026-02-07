@@ -1,48 +1,103 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  const [input, setInput] = useState("");
-  const [response, setResponse] = useState("");
+  const [topic, setTopic] = useState("");
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [history, setHistory] = useState([]);
 
-  const handleAsk = async () => {
+  // Load history from browser storage on start
+  useEffect(() => {
+    const savedHistory = JSON.parse(localStorage.getItem("eduHistory") || "[]");
+    setHistory(savedHistory);
+  }, []);
+
+  const fetchDashboard = async () => {
+    if (!topic) return;
     setLoading(true);
     try {
-      // REPLACE with your live Render URL after Step 4
-      const API_URL = "https://educational-content-assistant-ldux.onrender.com"; 
-      
-      const res = await fetch(API_URL, {
+      const res = await fetch("https://your-api.onrender.com/ask", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: input })
+        body: JSON.stringify({ prompt: topic })
       });
-      const data = await res.json();
-      setResponse(data.answer);
+      const result = await res.json();
+      
+      setData(result);
+      
+      // Update history and save to LocalStorage
+      const newHistory = [topic, ...history].slice(0, 5);
+      setHistory(newHistory);
+      localStorage.setItem("eduHistory", JSON.stringify(newHistory));
+      
     } catch (err) {
-      setResponse("Error connecting to server.");
+      alert("Server is waking up, please try again in 30 seconds!");
     }
     setLoading(false);
   };
 
   return (
-    <div className="container">
-      <h1>🎓 EduAssistant AI</h1>
-      <p>Your 24/7 personal tutor.</p>
-      <textarea 
-        value={input}
-        onChange={(e) => setInput(e.target.value)} 
-        placeholder="E.g., Explain Quantum Physics like I'm 10..." 
-      />
-      <button onClick={handleAsk} disabled={loading}>
-        {loading ? "Thinking..." : "Generate Lesson"}
-      </button>
-      {response && (
-        <div className="output">
-          <h3>Study Notes:</h3>
-          <p>{response}</p>
-        </div>
-      )}
+    <div className="dashboard-container">
+      {/* SIDEBAR: Static look, but clickable history */}
+      <aside className="sidebar">
+        <div className="logo">🎓 EduAI</div>
+        <div className="menu-label">RECENT TOPICS</div>
+        <ul className="history-list">
+          {history.map((h, i) => (
+            <li key={i} onClick={() => {setTopic(h); fetchDashboard();}}>{h}</li>
+          ))}
+        </ul>
+      </aside>
+
+      {/* MAIN CONTENT */}
+      <main className="main-content">
+        <header className="top-nav">
+          <div className="search-bar">
+            <input 
+              type="text" 
+              placeholder="Enter a topic (e.g. Photosynthesis)..." 
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
+            />
+            <button onClick={fetchDashboard}>{loading ? "..." : "Analyze"}</button>
+          </div>
+          <div className="user-profile">
+            <span>Vishnu Reddy</span>
+            <div className="avatar">VR</div>
+          </div>
+        </header>
+
+        {data ? (
+          <div className="stats-grid">
+            <div className="stat-card blue">
+              <h3>Difficulty</h3>
+              <p>{data.difficulty}</p>
+            </div>
+            <div className="stat-card orange">
+              <h3>Learning Time</h3>
+              <p>{data.timeToLearn}</p>
+            </div>
+            <div className="stat-card green">
+              <h3>Relevance</h3>
+              <p>{data.relevanceScore}%</p>
+            </div>
+            
+            <div className="info-box">
+              <h2>Top Concepts</h2>
+              <div className="tags">
+                {data.keyTerms.map(t => <span className="tag" key={t}>{t}</span>)}
+              </div>
+              <p className="summary-text">{data.summary}</p>
+            </div>
+          </div>
+        ) : (
+          <div className="empty-state">
+            <h2>Welcome to your Dashboard</h2>
+            <p>Enter a topic above to generate study statistics.</p>
+          </div>
+        )}
+      </main>
     </div>
   );
 }
