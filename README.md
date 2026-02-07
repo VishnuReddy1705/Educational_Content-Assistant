@@ -38,3 +38,15 @@ graph LR
     E -->|Search| C
     C -->|Context| F[🧠 OpenAI GPT-4]
     F -->|ScaleDown/Quiz| E
+Tech Stack
+Core Logic: Python 3.9
+
+LLM Orchestration: LangChain
+
+Intelligence: OpenAI GPT-4
+
+Vector Database: ChromaDB
+
+Frontend: Modern Web Interface (HTML/CSS/JS)
+
+Deployment: Vercel / Cloud Hosting
