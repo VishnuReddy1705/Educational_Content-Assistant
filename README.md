@@ -24,23 +24,38 @@ This application serves as an active study partner, offering:
 2.  **ScaleDown™ Technology:** A custom summarization engine that strips "fluff" while keeping pedagogical value.
 3.  **Active Recall Tools:** Automated generation of flashcards and quizzes.
 
-Project Structure 
-"Educational-Content-Assistant/"
-"├── .gitignore # Files to ignore (node_modules, .env, etc.)"
-"├── README.md # Project documentation and setup instructions"
-"├── client/ # Frontend (React/Web interface)"
-"│ ├── package.json # Frontend dependencies"
-"│ ├── public/"
-"│ │ └── index.html # Main entry page"
-"│ └── src/"
-"│ ├── index.js # React entry point"
-"│ ├── app.js # Main component logic"
-"│ ├── app.css # Styling"
-"│ └── data.js # Static data / constants"
-"├── server/ # Backend (Node.js / Express)"
-"│ ├── package.json # Backend dependencies"
-"│ └── index.js # API entry point"
-    
+# Educational Content Assistant
+
+## Project Structure
+
+Educational-Content-Assistant/
+├── .gitignore
+│   └── Files to ignore (node_modules, .env, etc.)
+├── README.md
+│   └── Project documentation and setup instructions
+├── client/
+│   └── Frontend (React / Web Interface)
+│       ├── package.json
+│       │   └── Frontend dependencies (React, scripts)
+│       ├── public/
+│       │   └── index.html
+│       │       └── Main entry HTML file
+│       └── src/
+│           ├── index.js
+│           │   └── React entry point
+│           ├── app.js
+│           │   └── Main component logic
+│           ├── app.css
+│           │   └── Global and component styling
+│           └── data.js
+│               └── Static data / configuration constants
+├── server/
+│   └── Backend (Node.js / Express API)
+│       ├── package.json
+│       │   └── Backend dependencies (Express, CORS)
+│       └── index.js
+│           └── API entry point and server logic
+
 ---
 🛠️ Tech Stack
 
