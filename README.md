@@ -24,6 +24,25 @@ This application serves as an active study partner, offering:
 2.  **ScaleDown™ Technology:** A custom summarization engine that strips "fluff" while keeping pedagogical value.
 3.  **Active Recall Tools:** Automated generation of flashcards and quizzes.
 
+Project Structure 
+Educational-Content-Assistant/
+├── .gitignore               # Files to ignore (node_modules, .env, etc.)
+├── README.md                # Project documentation and setup instructions
+│
+├── client/                  # Frontend (React/Web interface)
+│   ├── package.json         # Frontend dependencies (react, scripts)
+│   ├── public/              # Static assets
+│   │   └── index.html       # The main entry page
+│   └── src/                 # React source code
+│       ├── index.js         # Renders the React app into the DOM
+│       ├── app.js           # Main component logic
+│       ├── app.css          # Global and component styling
+│       └── data.js          # Static data or configuration constants
+│
+└── server/                  # Backend (Node.js/Express API)
+    ├── package.json         # Backend dependencies (express, cors)
+    └── index.js             # API entry point and server logic
+    
 ---
 🛠️ Tech Stack
 
