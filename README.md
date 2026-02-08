@@ -26,22 +26,20 @@ This application serves as an active study partner, offering:
 
 Project Structure 
 Educational-Content-Assistant/
-├── .gitignore               # Files to ignore (node_modules, .env, etc.)
-├── README.md                # Project documentation and setup instructions
-│
-├── client/                  # Frontend (React/Web interface)
-│   ├── package.json         # Frontend dependencies (react, scripts)
-│   ├── public/              # Static assets
-│   │   └── index.html       # The main entry page
-│   └── src/                 # React source code
-│       ├── index.js         # Renders the React app into the DOM
-│       ├── app.js           # Main component logic
-│       ├── app.css          # Global and component styling
-│       └── data.js          # Static data or configuration constants
-│
-└── server/                  # Backend (Node.js/Express API)
-    ├── package.json         # Backend dependencies (express, cors)
-    └── index.js             # API entry point and server logic
+├── .gitignore # Files to ignore (node_modules, .env, etc.)
+├── README.md # Project documentation and setup instructions
+├── client/ # Frontend (React/Web interface)
+│ ├── package.json # Frontend dependencies
+│ ├── public/
+│ │ └── index.html # Main entry page
+│ └── src/
+│ ├── index.js # React entry point
+│ ├── app.js # Main component logic
+│ ├── app.css # Styling
+│ └── data.js # Static data / constants
+├── server/ # Backend (Node.js / Express)
+│ ├── package.json # Backend dependencies
+│ └── index.js # API entry point
     
 ---
 🛠️ Tech Stack
